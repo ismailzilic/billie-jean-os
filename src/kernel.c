@@ -1,5 +1,6 @@
 #include "kernel.h"
 #include "idt/idt.h"
+#include "io/io.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -54,15 +55,16 @@ void print(const char *str)
 {
 	size_t len = strlen(str);
 
-	for (int i = 0; i < len; i++) {
+	for (int i = 0; i < len; i++)
 		terminal_write_char(str[i], 15);
-	}
 }
 
 void kernel_main()
 {
 	terminal_initialize();
-	print("Hello World!\nTesting newline char.\n");
+	print("ZEUSSS! Is this how you face me, coward!");
 
 	idt_init();
+
+	outb(0x60, 0xFF);
 }
