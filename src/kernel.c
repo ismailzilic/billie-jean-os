@@ -62,9 +62,12 @@ void print(const char *str)
 void kernel_main()
 {
 	terminal_initialize();
-	print("ZEUSSS! Is this how you face me, coward!");
+	print("ZEUSSS! Is this how you face me, coward!\n");
 
 	idt_init();
 
 	outb(0x60, 0xFF);
+
+	// Enable system interrupts
+	enable_interrupts();
 }
